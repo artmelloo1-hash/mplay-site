@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050805">
+  <meta name="description" content="M PLAY: conheça os planos e solicite seu teste grátis de 4 horas.">
+  <title>M PLAY | Seu entretenimento em um só lugar</title>
+  <style>
+    :root{--bg:#050805;--panel:#0d130e;--green:#47f52d;--lime:#caff00;--white:#f7f8f7;--muted:#b8c1b8;--line:#245b25}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 75% 0%,#102510 0,transparent 40%),var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:5;background:#050805ed;border-bottom:1px solid #19491a;backdrop-filter:blur(12px)}
+    nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;font-size:1.25rem}
+    .brand img{width:54px;height:54px;object-fit:contain}
+    .navlinks{display:flex;gap:25px;color:#e1e8e1;font-size:.94rem}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:999px;background:linear-gradient(100deg,var(--lime),var(--green));color:#071006;font-weight:800;padding:14px 22px;cursor:pointer;box-shadow:0 0 22px #47f52d28;transition:transform .18s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-outline{background:transparent;color:var(--green);border:1px solid var(--green);box-shadow:none}
+    .hero{padding:74px 0 64px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:35px}
+    .eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:2px;font-size:.82rem;font-weight:800}
+    h1{font-size:clamp(2.35rem,5vw,4.3rem);line-height:1.02;letter-spacing:-2px;margin:14px 0 18px}
+    h1 span,.green{color:var(--green)}
+    .hero p{font-size:1.1rem;color:var(--muted);max-width:540px;margin-bottom:26px}
+    .subnote{font-size:.84rem!important;margin:12px 0 0!important}
+    .hero-art{display:flex;justify-content:center;align-items:center;position:relative;min-height:300px}
+    .hero-art:before{content:"";position:absolute;width:80%;aspect-ratio:1;border-radius:50%;background:#31ff1a15;filter:blur(35px)}
+    .hero-art img{position:relative;width:min(100%,410px);filter:drop-shadow(0 0 28px #35fa2c40)}
+    section{padding:48px 0}
+    .section-head{text-align:center;margin-bottom:28px}
+    .section-head h2{font-size:clamp(1.7rem,3vw,2.5rem);margin:0 0 8px}
+    .section-head p{color:var(--muted);margin:0}
+    .categories{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .category,.plan,.faq{background:linear-gradient(145deg,#101811,#080b08);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .category{text-align:center}
+    .category .symbol{font-size:2rem;color:var(--green);margin-bottom:7px}
+    .category h3{margin:0;font-size:1.05rem}
+    .category p{color:var(--muted);font-size:.88rem;margin:5px 0 0}
+    .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+    .plan{display:flex;flex-direction:column;position:relative}
+    .plan.featured{border-color:var(--green);box-shadow:0 0 24px #42ff2820}
+    .tag{color:#081006;background:var(--green);font-size:.7rem;font-weight:900;padding:5px 9px;border-radius:999px;align-self:flex-start;margin-bottom:12px}
+    .plan h3{margin:0 0 5px;font-size:1rem}
+    .price{font-size:2.15rem;font-weight:900;letter-spacing:-1px;margin:0 0 14px}
+    .price small{font-size:.9rem;color:var(--green);letter-spacing:0}
+    .plan ul{padding:0;margin:0 0 22px;list-style:none;color:#d4ddd4;font-size:.88rem;flex:1}
+    .plan li{margin:9px 0}
+    .plan li:before{content:"✓";color:var(--green);font-weight:900;margin-right:8px}
+    .plan .btn{padding:12px 10px;font-size:.85rem}
+    .trial{border:1px solid #276c26;border-radius:22px;padding:34px;background:linear-gradient(110deg,#101c10,#080b08);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .trial h2{font-size:clamp(1.6rem,3vw,2.4rem);margin:0 0 8px}
+    .trial p{margin:0;color:var(--muted)}
+    .faq-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .faq h3{font-size:1rem;margin:0 0 7px}
+    .faq p{margin:0;color:var(--muted);font-size:.92rem}
+    footer{border-top:1px solid #193a19;padding:26px 0;color:var(--muted);font-size:.84rem}
+    .foot{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
+    .disclaimer{font-size:.76rem;color:#829082;max-width:760px;margin-top:12px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;text-align:center;padding-top:48px}.hero p{margin-left:auto;margin-right:auto}.hero-art{min-height:210px}.hero-art img{width:min(70%,300px)}.categories,.plans{grid-template-columns:repeat(2,1fr)}.trial{flex-direction:column;text-align:center}}
+    @media(max-width:560px){.navlinks{display:none}.brand img{width:45px;height:45px}.hero{padding:42px 0}.categories,.plans,.faq-list{grid-template-columns:1fr}.plan{padding:24px}.trial{padding:26px 20px}.btn{width:100%}.foot{justify-content:center;text-align:center}}
+  </style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#inicio" aria-label="M PLAY início">
+      <img src="assets/logo-mplay.png" alt="Logo M PLAY"><span>M PLAY</span>
+    </a>
+    <div class="navlinks">
+      <a href="#inicio">Início</a><a href="#conteudos">Conteúdos</a><a href="#planos">Planos</a><a href="#duvidas">Dúvidas</a>
+    </div>
+    <a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20M%20PLAY." target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap" id="inicio">
+    <div>
+      <div class="eyebrow">Conheça a M PLAY</div>
+      <h1>SEU ENTRETENIMENTO <span>EM UM SÓ LUGAR.</span></h1>
+      <p>Explore opções de canais, filmes, séries e animes em uma experiência simples e prática.</p>
+      <a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20solicitar%20meu%20teste%20gr%C3%A1tis%20de%204%20horas%20da%20M%20PLAY." target="_blank" rel="noopener">▶ &nbsp; QUERO MEU TESTE GRÁTIS DE 4 HORAS</a>
+      <p class="subnote">Solicite seu teste pelo WhatsApp. Consulte condições e compatibilidade.</p>
+    </div>
+    <div class="hero-art"><img src="assets/logo-mplay.png" alt="Emblema M PLAY em verde neon"></div>
+  </section>
+
+  <section class="wrap" id="conteudos">
+    <div class="section-head"><h2>UM UNIVERSO DE <span class="green">ENTRETENIMENTO</span></h2><p>Confira as categorias disponíveis no serviço.</p></div>
+    <div class="categories">
+      <article class="category"><div class="symbol">▣</div><h3>CANAIS</h3><p>Consulte a programação disponível.</p></article>
+      <article class="category"><div class="symbol">▶</div><h3>FILMES</h3><p>Opções para sua sessão de cinema.</p></article>
+      <article class="category"><div class="symbol">▤</div><h3>SÉRIES</h3><p>Histórias para acompanhar.</p></article>
+      <article class="category"><div class="symbol">✦</div><h3>ANIMES</h3><p>Animações e aventuras.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap" id="planos">
+    <div class="section-head"><h2>ESCOLHA SEU <span class="green">PLANO</span></h2><p>Selecione a duração que combina com você.</p></div>
+    <div class="plans">
+      <article class="plan"><h3>MENSAL</h3><p class="price"><small>R$</small> 30,00</p><ul><li>Plano de 1 mês</li><li>Suporte pelo WhatsApp</li><li>Consulte compatibilidade</li></ul><a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20contratar%20o%20plano%20MENSAL%20da%20M%20PLAY%20por%20R%24%2030%2C00." target="_blank" rel="noopener">QUERO ESTE PLANO</a></article>
+      <article class="plan"><h3>TRIMESTRAL</h3><p class="price"><small>R$</small> 80,00</p><ul><li>Plano de 3 meses</li><li>Suporte pelo WhatsApp</li><li>Consulte compatibilidade</li></ul><a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20contratar%20o%20plano%20TRIMESTRAL%20da%20M%20PLAY%20por%20R%24%2080%2C00." target="_blank" rel="noopener">QUERO ESTE PLANO</a></article>
+      <article class="plan"><h3>SEMESTRAL</h3><p class="price"><small>R$</small> 130,00</p><ul><li>Plano de 6 meses</li><li>Suporte pelo WhatsApp</li><li>Consulte compatibilidade</li></ul><a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20contratar%20o%20plano%20SEMESTRAL%20da%20M%20PLAY%20por%20R%24%20130%2C00." target="_blank" rel="noopener">QUERO ESTE PLANO</a></article>
+      <article class="plan featured"><span class="tag">12 MESES</span><h3>ANUAL</h3><p class="price"><small>R$</small> 220,00</p><ul><li>Plano de 12 meses</li><li>Suporte pelo WhatsApp</li><li>Consulte compatibilidade</li></ul><a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20contratar%20o%20plano%20ANUAL%20da%20M%20PLAY%20por%20R%24%20220%2C00." target="_blank" rel="noopener">QUERO ESTE PLANO</a></article>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="trial">
+      <div><h2>EXPERIMENTE A <span class="green">M PLAY</span></h2><p>Peça seu teste grátis de 4 horas pelo WhatsApp.</p></div>
+      <a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20solicitar%20meu%20teste%20gr%C3%A1tis%20de%204%20horas." target="_blank" rel="noopener">SOLICITAR TESTE GRÁTIS</a>
+    </div>
+  </section>
+
+  <section class="wrap" id="duvidas">
+    <div class="section-head"><h2>DÚVIDAS <span class="green">FREQUENTES</span></h2><p>Informações rápidas antes de começar.</p></div>
+    <div class="faq-list">
+      <article class="faq"><h3>Como solicito o teste grátis?</h3><p>Clique em um dos botões de teste e envie a mensagem pelo WhatsApp para receber as orientações.</p></article>
+      <article class="faq"><h3>Quais são os planos?</h3><p>Mensal por R$ 30,00; trimestral por R$ 80,00; semestral por R$ 130,00; anual por R$ 220,00.</p></article>
+      <article class="faq"><h3>Em quais dispositivos funciona?</h3><p>Consulte nossa equipe para confirmar compatibilidade com seu aparelho e as condições de acesso.</p></article>
+      <article class="faq"><h3>Como tiro outras dúvidas?</h3><p>Fale diretamente com a equipe da M PLAY pelo botão de WhatsApp.</p></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot"><strong>M PLAY</strong><span>Seu entretenimento em um só lugar.</span><span>© <span id="year">2026</span> M PLAY</span></div>
+  <div class="wrap disclaimer">Disponibilidade, compatibilidade e condições do serviço devem ser confirmadas antes da contratação. Divulgue e disponibilize apenas conteúdos para os quais você tenha autorização ou licença de distribuição.</div>
+</footer>
+</body>
+</html>
