@@ -60,6 +60,28 @@
     footer{border-top:1px solid #193a19;padding:26px 0;color:var(--muted);font-size:.84rem}
     .foot{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
     .disclaimer{font-size:.76rem;color:#829082;max-width:760px;margin-top:12px}
+
+    .showcase{padding-top:54px}
+    .catalog-intro{max-width:720px;margin:0 auto 24px;text-align:center;color:var(--muted)}
+    .catalog-tools{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:22px 0 28px}
+    .filter-btn{border:1px solid #326c31;background:#0c130c;color:#dce8dc;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer}
+    .filter-btn.active,.filter-btn:hover{background:var(--green);color:#071006;border-color:var(--green)}
+    .poster-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .poster{position:relative;overflow:hidden;border:1px solid #214a22;border-radius:15px;background:#0c110c;min-width:0;transition:transform .2s,border-color .2s}
+    .poster:hover{transform:translateY(-4px);border-color:var(--green)}
+    .poster-art{aspect-ratio:2/2.75;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;position:relative;isolation:isolate;overflow:hidden}
+    .poster-art:before{content:"";position:absolute;inset:0;z-index:-2;background:var(--poster-bg)}
+    .poster-art:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#020402f5 0%,#02040240 58%,#02040212 100%)}
+    .poster-kicker{font-size:.66rem;font-weight:900;letter-spacing:2px;color:#caff00;text-transform:uppercase}
+    .poster-title{font-size:clamp(1.05rem,2vw,1.55rem);font-weight:900;line-height:1.02;margin-top:8px;text-shadow:0 2px 12px #000}
+    .poster-desc{font-size:.77rem;color:#e0e7df;margin-top:7px;line-height:1.35}
+    .poster-meta{display:flex;justify-content:space-between;gap:8px;padding:12px 13px;color:#aeb9ae;font-size:.78rem}
+    .poster-meta strong{color:#f5fff4}
+    .poster-badge{position:absolute;top:12px;left:12px;background:#071006d9;border:1px solid #47f52d88;color:#caff00;border-radius:6px;padding:4px 7px;font-size:.65rem;font-weight:900}
+    .catalog-cta{text-align:center;margin-top:28px}
+    .catalog-note{text-align:center;color:#899789;font-size:.78rem;margin:14px auto 0;max-width:800px}
+    @media(max-width:850px){.poster-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:420px){.poster-grid{gap:10px}.poster-art{padding:13px}.poster-desc{font-size:.7rem}.poster-meta{padding:10px;font-size:.7rem}}
     @media(max-width:850px){.hero{grid-template-columns:1fr;text-align:center;padding-top:48px}.hero p{margin-left:auto;margin-right:auto}.hero-art{min-height:210px}.hero-art img{width:min(70%,300px)}.categories,.plans{grid-template-columns:repeat(2,1fr)}.trial{flex-direction:column;text-align:center}}
     @media(max-width:560px){.navlinks{display:none}.brand img{width:45px;height:45px}.hero{padding:42px 0}.categories,.plans,.faq-list{grid-template-columns:1fr}.plan{padding:24px}.trial{padding:26px 20px}.btn{width:100%}.foot{justify-content:center;text-align:center}}
   </style>
@@ -89,15 +111,31 @@
     <div class="hero-art"><img src="assets/logo-mplay.png" alt="Emblema M PLAY em verde neon"></div>
   </section>
 
-  <section class="wrap" id="conteudos">
-    <div class="section-head"><h2>UM UNIVERSO DE <span class="green">ENTRETENIMENTO</span></h2><p>Confira as categorias disponíveis no serviço.</p></div>
-    <div class="categories">
-      <article class="category"><div class="symbol">▣</div><h3>CANAIS</h3><p>Consulte a programação disponível.</p></article>
-      <article class="category"><div class="symbol">▶</div><h3>FILMES</h3><p>Opções para sua sessão de cinema.</p></article>
-      <article class="category"><div class="symbol">▤</div><h3>SÉRIES</h3><p>Histórias para acompanhar.</p></article>
-      <article class="category"><div class="symbol">✦</div><h3>ANIMES</h3><p>Animações e aventuras.</p></article>
+
+  <section class="wrap showcase" id="conteudos">
+    <div class="section-head"><div class="eyebrow">Descubra seu próximo favorito</div><h2>VEJA O QUE TE <span class="green">ESPERA</span></h2><p>Um gostinho das categorias que você pode explorar na M PLAY.</p></div>
+    <p class="catalog-intro">Filmes para sua sessão de cinema, séries para maratonar, desenhos para a família e animes cheios de aventura — tudo apresentado em uma única vitrine.</p>
+    <div class="catalog-tools" role="group" aria-label="Filtrar categorias do catálogo">
+      <button class="filter-btn active" type="button" data-filter="todos" aria-pressed="true">Tudo</button>
+      <button class="filter-btn" type="button" data-filter="filmes" aria-pressed="false">Filmes</button>
+      <button class="filter-btn" type="button" data-filter="series" aria-pressed="false">Séries</button>
+      <button class="filter-btn" type="button" data-filter="desenhos" aria-pressed="false">Desenhos</button>
+      <button class="filter-btn" type="button" data-filter="animes" aria-pressed="false">Animes</button>
     </div>
+    <div class="poster-grid" id="posterGrid">
+      <article class="poster" data-category="filmes"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 70% 25%,#e7a84c 0%,transparent 24%),linear-gradient(145deg,#7e351e,#1a1724 58%,#080b08)"><span class="poster-badge">FILME</span><div class="poster-kicker">Aventura • Ficção</div><div class="poster-title">NO LIMITE<br>DO UNIVERSO</div><div class="poster-desc">Grandes histórias para viver sem sair do sofá.</div></div><div class="poster-meta"><strong>Filmes</strong><span>★ Destaque</span></div></article>
+      <article class="poster" data-category="series"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 45% 25%,#6e3cba 0%,transparent 28%),linear-gradient(145deg,#101a44,#24122c 60%,#080b08)"><span class="poster-badge">SÉRIE</span><div class="poster-kicker">Mistério • Suspense</div><div class="poster-title">SEGREDOS<br>DA NOITE</div><div class="poster-desc">Personagens marcantes e histórias que prendem.</div></div><div class="poster-meta"><strong>Séries</strong><span>Maratone</span></div></article>
+      <article class="poster" data-category="desenhos"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 30% 20%,#ffdc68 0%,transparent 24%),linear-gradient(145deg,#147f82,#2856a0 55%,#11152d)"><span class="poster-badge">DESENHO</span><div class="poster-kicker">Família • Diversão</div><div class="poster-title">MUNDO<br>COLORIDO</div><div class="poster-desc">Diversão e imaginação para todas as idades.</div></div><div class="poster-meta"><strong>Desenhos</strong><span>Para a família</span></div></article>
+      <article class="poster" data-category="animes"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 65% 25%,#e34d70 0%,transparent 22%),linear-gradient(145deg,#33154e,#18224a 55%,#080b08)"><span class="poster-badge">ANIME</span><div class="poster-kicker">Ação • Fantasia</div><div class="poster-title">LENDAS<br>DO AMANHÃ</div><div class="poster-desc">Ação, emoção e jornadas inesquecíveis.</div></div><div class="poster-meta"><strong>Animes</strong><span>Grandes aventuras</span></div></article>
+      <article class="poster" data-category="filmes"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 50% 20%,#d54a3b 0%,transparent 25%),linear-gradient(145deg,#461b20,#161725 58%,#080b08)"><span class="poster-badge">FILME</span><div class="poster-kicker">Ação • Aventura</div><div class="poster-title">MISSÃO<br>IMPOSSÍVEL</div><div class="poster-desc">Adrenalina e reviravoltas a cada cena.</div></div><div class="poster-meta"><strong>Filmes</strong><span>No seu ritmo</span></div></article>
+      <article class="poster" data-category="series"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 55% 25%,#8eae68 0%,transparent 25%),linear-gradient(145deg,#183f36,#172a31 60%,#080b08)"><span class="poster-badge">SÉRIE</span><div class="poster-kicker">Drama • Investigação</div><div class="poster-title">CASOS<br>SECRETOS</div><div class="poster-desc">Suspense e descobertas episódio após episódio.</div></div><div class="poster-meta"><strong>Séries</strong><span>Novas histórias</span></div></article>
+      <article class="poster" data-category="desenhos"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 35% 20%,#ff9e55 0%,transparent 23%),linear-gradient(145deg,#7c3e85,#246c9c 55%,#10152b)"><span class="poster-badge">DESENHO</span><div class="poster-kicker">Comédia • Aventura</div><div class="poster-title">TURMA<br>EM AÇÃO</div><div class="poster-desc">Personagens divertidos e muita imaginação.</div></div><div class="poster-meta"><strong>Desenhos</strong><span>Para curtir junto</span></div></article>
+      <article class="poster" data-category="animes"><div class="poster-art" style="--poster-bg:radial-gradient(ellipse at 50% 25%,#f4a33c 0%,transparent 22%),linear-gradient(145deg,#7a292d,#29204d 58%,#080b08)"><span class="poster-badge">ANIME</span><div class="poster-kicker">Fantasia • Ação</div><div class="poster-title">GUARDIÕES<br>DA HONRA</div><div class="poster-desc">Heróis, desafios e poderes extraordinários.</div></div><div class="poster-meta"><strong>Animes</strong><span>Explore</span></div></article>
+    </div>
+    <div class="catalog-cta"><a class="btn" href="https://wa.me/5561994070357?text=Ol%C3%A1%21%20Quero%20conhecer%20o%20cat%C3%A1logo%20e%20solicitar%20meu%20teste%20gr%C3%A1tis%20de%204%20horas%20da%20M%20PLAY." target="_blank" rel="noopener">QUERO CONHECER A M PLAY</a></div>
+    <p class="catalog-note">Artes ilustrativas para apresentar as categorias. O catálogo e a disponibilidade dos títulos podem variar; consulte as opções e condições pelo WhatsApp.</p>
   </section>
+
 
   <section class="wrap" id="planos">
     <div class="section-head"><h2>ESCOLHA SEU <span class="green">PLANO</span></h2><p>Selecione a duração que combina com você.</p></div>
@@ -131,5 +169,26 @@
   <div class="wrap foot"><strong>M PLAY</strong><span>Seu entretenimento em um só lugar.</span><span>© <span id="year">2026</span> M PLAY</span></div>
   <div class="wrap disclaimer">Disponibilidade, compatibilidade e condições do serviço devem ser confirmadas antes da contratação. Divulgue e disponibilize apenas conteúdos para os quais você tenha autorização ou licença de distribuição.</div>
 </footer>
+
+<script>
+  (function(){
+    const buttons = document.querySelectorAll('.filter-btn');
+    const posters = document.querySelectorAll('.poster');
+    buttons.forEach(function(button){
+      button.addEventListener('click', function(){
+        const filter = button.dataset.filter;
+        buttons.forEach(function(item){
+          const active = item === button;
+          item.classList.toggle('active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        posters.forEach(function(poster){
+          poster.hidden = filter !== 'todos' && poster.dataset.category !== filter;
+        });
+      });
+    });
+  })();
+</script>
+
 </body>
 </html>
